@@ -1,0 +1,47 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StumpTalk 🏏</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <%- include("partials/navbar") %>
+    
+  <header>
+    <h1>🏏 StumpTalk</h1>
+    <p>Your Mixed Cricket Diary : Match thoughts, player takes, and memories.</p>
+
+    <a href="/new" class="btn">+ Create New Post</a>
+  </header>
+
+  <main>
+    <% if (posts.length === 0) { %>
+      <p class="empty">No posts yet. Start your first cricket story!</p>
+    <% } %>
+
+    <section class="posts-grid">
+    <% posts.forEach(post => { %>
+      <div class="card">
+        <p class="meta">
+  <strong><%= post.category %></strong> • <%= post.date %>
+</p>
+
+
+        <h2><%= post.title %></h2>
+        <p><%= post.content.substring(0, 120) %>...</p>
+        <a href="/post/<%= post.id %>" class="read-btn">
+  Read Full Blog →
+</a>
+      </div>
+      
+    <% }) %>
+    </section>
+  </main>
+  <%- include("partials/footer") %>
+</body>
+</html>
+

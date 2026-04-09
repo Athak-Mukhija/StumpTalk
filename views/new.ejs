@@ -1,0 +1,46 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Post | StumpTalk</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <%- include("partials/navbar") %>
+  <header>
+    <h1>✍️ New Cricket Post</h1>
+    <p>Write your match diary, hot take, or cricket memory.</p>
+  </header>
+
+  <main>
+    <form action="/new" method="POST" class="form-box">
+
+      <label>Post Title</label>
+      <input type="text" name="title" required placeholder="Eg: India’s WC 2026 Chances">
+
+      <label>Post Content</label>
+      <textarea name="content" rows="8" required
+        placeholder="Write your cricket thoughts here..."></textarea>
+
+      <label>Category</label>
+      <select name="category">
+        <option>Match Review</option>
+        <option>Player Analysis</option>
+        <option>Hot Take</option>
+        <option>Cricket Memory</option>
+        <option>News Opinion</option>
+      </select>
+
+      <button type="submit" class="btn">🏏 Publish Post</button>
+
+    </form>
+
+    <a href="/" class="back-link">← Back to Home</a>
+  </main>
+<%- include("partials/footer") %>
+</body>
+</html>
+
+

@@ -1,0 +1,47 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Post | StumpTalk</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+    <%- include("partials/navbar") %>
+  <header>
+    <h1>✏️ Edit Cricket Post</h1>
+    <p>Update your thoughts like a true commentator.</p>
+  </header>
+
+  <main>
+    <form action="/edit/<%= post.id %>" method="POST" class="form-box">
+
+      <label>Post Title</label>
+      <input type="text" name="title" value="<%= post.title %>" required>
+
+      <label>Post Content</label>
+      <textarea name="content" rows="8" required><%= post.content %></textarea>
+
+      <label>Category</label>
+      <select name="category">
+        <option selected><%= post.category %></option>
+        <option>Match Review</option>
+        <option>Player Analysis</option>
+        <option>Hot Take</option>
+        <option>Cricket Memory</option>
+        <option>News Opinion</option>
+      </select>
+
+      <button type="submit" class="btn">💾 Save Changes</button>
+
+    </form>
+
+    <a href="/" class="back-link">← Cancel</a>
+  </main>
+  <%- include("partials/footer") %>
+</body>
+</html>
+
+

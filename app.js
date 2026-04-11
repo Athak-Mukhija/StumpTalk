@@ -2,27 +2,49 @@ import express from "express";
 import bodyParser from "body-parser";
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
-// Middleware
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// Set EJS
 app.set("view engine", "ejs");
 
-// Temporary in-memory posts
 let posts = [];
 
-// HOME ROUTE
+
+let isLoggedIn = false;
+
 app.get("/", (req, res) => {
+  if (!isLoggedIn) {
+    return res.redirect("/login");
+  }
   res.render("home", { posts });
 });
+
 
 app.get("/new", (req, res) => {
   res.render("new");
 });
 
+app.get("/login", (req, res) => {
+  res.render("login");
+});
+
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  if (username === "admin" && password === "1234") {
+    isLoggedIn = true;
+    res.redirect("/");
+  } else {
+    res.send("Invalid Credentials ❌");
+  }
+});
+
+app.get("/explore", (req, res) => {
+  res.render("explore", { posts });
+});
 
 app.post("/new", (req, res) => {
   const { title, content, category } = req.body;
@@ -42,7 +64,6 @@ app.post("/new", (req, res) => {
 
 
 
-// VIEW FULL POST
 app.get("/post/:id", (req, res) => {
   const postId = Number(req.params.id);
 

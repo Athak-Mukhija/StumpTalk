@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Explore | StumpTalk</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <%- include("partials/navbar") %>
+
+  <main>
+    <h2 style="text-align:center;">🔍 Explore Cricket Posts</h2>
+
+    <!-- SEARCH -->
+    <input type="text" id="searchInput" placeholder="Search posts...">
+
+    <!-- FILTER -->
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+      <option>Match Review</option>
+      <option>Player Analysis</option>
+      <option>Hot Take</option>
+      <option>Cricket Memory</option>
+      <option>News Opinion</option>
+    </select>
+
+    <!-- POSTS -->
+    <div id="postsContainer" class="posts-grid">
+      <% posts.forEach(post => { %>
+        <div class="card"
+             data-title="<%= post.title.toLowerCase() %>"
+             data-category="<%= post.category %>">
+
+          <h3><%= post.title %></h3>
+          <p><%= post.category %></p>
+          <p><%= post.content.substring(0, 80) %>...</p>
+
+        </div>
+      <% }) %>
+    </div>
+  </main>
+
+  <%- include("partials/footer") %>
+
+  <!-- JS FILE -->
+  <script src="/script.js"></script>
+</body>
+</html>

@@ -94,7 +94,7 @@ It allows users to create blog posts and also play an interactive cricket quiz.
 
 ## 👨‍💻 Author
 
-- Your Name
+- CricCoders
 
 ---
 

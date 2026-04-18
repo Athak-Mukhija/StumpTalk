@@ -75,14 +75,17 @@ const [noMoreQuestions, setNoMoreQuestions] = useState(false);
 useEffect(() => {
   if (!gameOver) return;
 
-  const key = mode === "survival" ? "highScore_survival" : "highScore_speed";
+  const key =
+    mode === "survival"
+      ? "highScore_survival"
+      : "highScore_speed";
 
   if (score > highScore) {
     localStorage.setItem(key, score);
     setHighScore(score);
     setNewHigh(true);
   }
-}, [gameOver]);
+}, [gameOver, score, highScore, mode]); // ✅ FIXED
 
 useEffect(() => {
   if (!mode) return;

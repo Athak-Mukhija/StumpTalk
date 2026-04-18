@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
   <title>Login | StumpTalk</title>
@@ -6,24 +7,47 @@
 </head>
 
 <body>
-  
+
+  <!-- HERO / INTRO SECTION -->
+
+  <section style="text-align:center; padding: 40px 20px;">
+    <h1>🏏 StumpTalk</h1>
+    <p style="max-width:600px; margin:auto; font-size:16px; line-height:1.5;">
+      Welcome to <strong>StumpTalk</strong>.. your personal cricket diary.  
+      Share match thoughts, analyze performances, and relive unforgettable cricket moments.
+    </p>
+  </section>
+
+
+  <!-- LOGIN FORM -->
 
   <main>
-    <h2 style="text-align:center;">🔐 Login</h2>
+    <h2 style="text-align:center;">🔐 Login to Continue</h2>
 
-    <form action="/login" method="POST" class="form-box">
 
-      <label>Username</label>
-      <input type="text" name="username" required>
+<form action="/login" method="POST" class="form-box">
 
-      <label>Password</label>
-      <input type="password" name="password" required>
+  <label>Username</label>
+  <input type="text" name="username" required>
 
-      <button type="submit" class="btn">Login</button>
+  <label>Password</label>
+  <input type="password" name="password" required>
 
-    </form>
+  <button type="submit" class="btn">Login</button>
+
+</form>
+
+<!-- INFO SECTION -->
+<div style="text-align:center; margin-top:20px; font-size:14px;">
+  <p>📝 Create and manage your own cricket blogs</p>
+  <p>🔍 Explore posts with smart filters</p>
+  <p>🎮 Play interactive cricket quiz</p>
+</div>
+
+
   </main>
 
-  <%- include("partials/footer") %>
+<%- include("partials/footer") %>
+
 </body>
 </html>

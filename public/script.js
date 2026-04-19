@@ -22,6 +22,14 @@ function filterPosts() {
   });
 }
 
+function animateHeart(btn) {
+  btn.classList.add("animate");
+
+  setTimeout(() => {
+    btn.classList.remove("animate");
+  }, 300);
+}
+
 // Event Listeners
 searchInput.addEventListener("input", filterPosts);
 categoryFilter.addEventListener("change", filterPosts);

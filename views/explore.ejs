@@ -8,32 +8,62 @@
 <body>
   <%- include("partials/navbar") %>
 
-  <main>
+  <main class="container">
     <h2 style="text-align:center;">🔍 Explore Cricket Posts</h2>
 
-    <!-- SEARCH -->
-    <input type="text" id="searchInput" placeholder="Search posts...">
+    <!-- SEARCH + FILTER -->
+    <div style="text-align:center; margin: 20px 0;">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search posts..."
+        style="padding:10px; width:250px; border-radius:8px; border:none;"
+      >
 
-    <!-- FILTER -->
-    <select id="categoryFilter">
-      <option value="all">All Categories</option>
-      <option>Match Review</option>
-      <option>Player Analysis</option>
-      <option>Hot Take</option>
-      <option>Cricket Memory</option>
-      <option>News Opinion</option>
-    </select>
+      <select id="categoryFilter" style="padding:10px; border-radius:8px;">
+        <option value="all">All Categories</option>
+        <option>Match Review</option>
+        <option>Player Analysis</option>
+        <option>Hot Take</option>
+        <option>Cricket Memory</option>
+        <option>News Opinion</option>
+      </select>
+    </div>
 
     <!-- POSTS -->
     <div id="postsContainer" class="posts-grid">
       <% posts.forEach(post => { %>
-        <div class="card"
+        <div class="card post-card"
              data-title="<%= post.title.toLowerCase() %>"
              data-category="<%= post.category %>">
 
+          <!-- CATEGORY -->
+          <h4 style="color:#2ecc71;"><%= post.category %></h4>
+
+          <!-- AUTHOR + DATE -->
+          <p style="font-size:14px; color:#ccc;">
+            ✍️ By <strong><%= post.username %></strong> • 
+            📅 <%= new Date(post.created_at).toLocaleDateString() %>
+          </p>
+
+          <!-- TITLE -->
           <h3><%= post.title %></h3>
-          <p><%= post.category %></p>
+
+          <!-- CONTENT -->
           <p><%= post.content.substring(0, 80) %>...</p>
+
+          <!-- FOOTER -->
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px;">
+            
+            <!-- ❤️ Likes -->
+            <span style="color:pink;">❤️ <%= post.likes || 0 %></span>
+
+            <!-- READ -->
+            <a href="/post/<%= post.id %>" style="color:#2ecc71; text-decoration:none;">
+              Read →
+            </a>
+
+          </div>
 
         </div>
       <% }) %>
@@ -42,7 +72,6 @@
 
   <%- include("partials/footer") %>
 
-  <!-- JS FILE -->
   <script src="/script.js"></script>
 </body>
 </html>

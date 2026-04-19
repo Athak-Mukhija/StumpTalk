@@ -155,9 +155,9 @@ input, textarea, select {
 
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
-  margin-top: 30px;
+  padding: 20px;
 }
 
 
@@ -171,3 +171,43 @@ input, textarea, select {
   border: none;
 }
 
+.like-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.like-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.2);
+}
+
+/* ✅ ONLY COLOR */
+.like-btn.liked {
+  color: red;
+}
+
+/* ✅ ANIMATION SEPARATE */
+.like-btn.animate {
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.4); }
+  100% { transform: scale(1); }
+}
+
+
+
+.post-card:hover {
+  transform: translateY(-5px);
+}

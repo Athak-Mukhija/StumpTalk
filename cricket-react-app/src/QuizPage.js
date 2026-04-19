@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import questions from "./Questions";
-import QuestionCard from "./QuestionCard";
+import QuestionCard from "./components/QuestionCard";
 import "./styles.css";
 
 // 🔊 Sounds

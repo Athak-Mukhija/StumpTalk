@@ -1,12 +1,41 @@
 <nav class="navbar">
-  <div class="logo">
-    🏏 <span>StumpTalk</span>
-  </div>
-  <a href="https://rad-bonbon-d6b47b.netlify.app/" target="_blank" class="btn"> 🎮 Play Cricket Quiz </a>
-  <ul class="nav-links">
-    <li><a href="/">Home</a></li>
-    <li><a href="/new">New Post</a></li>
-    <li><a href="/explore">Explore</a></li>
   
-  </ul>
+  <!-- LEFT: LOGO -->
+  <div class="logo">
+    <a href="/" style="color:white; text-decoration:none; font-weight:bold;">
+      🏏 StumpTalk
+    </a>
+  </div>
+
+  <!-- CENTER: QUIZ BUTTON -->
+  <a href="https://rad-bonbon-d6b47b.netlify.app/" target="_blank" class="btn">
+    🎮 Play Cricket Quiz
+  </a>
+
+  <!-- RIGHT: NAV LINKS -->
+  <div style="display:flex; align-items:center; gap:20px;">
+
+    <% if (username) { %>
+
+      <!-- Logged In -->
+      <span>👤 <%= username %></span>
+
+      <ul class="nav-links">
+        <li><a href="/new">New Post</a></li>
+        <li><a href="/explore">Explore</a></li>
+        <li><a href="/logout" style="color:red;">Logout</a></li>
+      </ul>
+
+    <% } else { %>
+
+      <!-- Logged Out -->
+      <ul class="nav-links">
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+      </ul>
+
+    <% } %>
+
+  </div>
+
 </nav>

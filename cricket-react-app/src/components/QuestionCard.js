@@ -2,11 +2,11 @@ import React from "react";
 
 function QuestionCard({ question, options, handleAnswer }) {
   return (
-    <div>
+    <div className="card">
       <h2>{question}</h2>
 
-      {options.map((opt, index) => (
-        <button key={index} onClick={() => handleAnswer(opt)}>
+      {options.map((opt, i) => (
+        <button key={i} onClick={() => handleAnswer(opt)}>
           {opt}
         </button>
       ))}

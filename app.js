@@ -4,8 +4,7 @@ import session from "express-session";
 import pkg from "pg";
 import bcrypt from "bcrypt";
 import connectPgSimple from "connect-pg-simple";
-import session from "express-session";
-import connectPgSimple from "connect-pg-simple";
+
 
 
 const PGStore = connectPgSimple(session);

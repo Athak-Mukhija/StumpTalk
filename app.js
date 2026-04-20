@@ -217,48 +217,91 @@ app.post("/register", async (req, res) => {
       [username, hashed]
     );
 
+    console.log("USER REGISTERED:", username);
+
     res.redirect("/login");
 
   } catch (err) {
-    console.log("REGISTER ERROR:", err); // 🔥 VERY IMPORTANT
+    console.log("REGISTER ERROR:", err);
+
+    if (err.code === "23505") {
+      return res.send("Username already exists ❌");
+    }
+
     res.send("Something went wrong ❌");
   }
 });
+
 
 // 🔐 LOGIN PAGE
 app.get("/login", (req, res) => {
   res.render("login");
 });
 
+
 // 🔐 LOGIN LOGIC
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
-  const result = await pool.query(
-    "SELECT * FROM users WHERE username=$1",
-    [username]
-  );
+  try {
+    const result = await pool.query(
+      "SELECT * FROM users WHERE username=$1",
+      [username]
+    );
 
-  const user = result.rows[0];
+    if (result.rows.length === 0) {
+      return res.send("User not found ❌");
+    }
 
-  if (!user) return res.send("User not found ❌");
+    const user = result.rows[0];
 
-  const valid = await bcrypt.compare(password, user.password);
+    const valid = await bcrypt.compare(password, user.password);
 
-  if (valid) {
+    if (!valid) {
+      return res.send("Wrong password ❌");
+    }
+
+    // ✅ STORE SESSION PROPERLY
     req.session.userId = user.id;
+    req.session.username = user.username;
+
+    console.log("LOGIN SUCCESS:", req.session);
+
     res.redirect("/");
-  } else {
-    res.send("Wrong password ❌");
+
+  } catch (err) {
+    console.log("LOGIN ERROR:", err);
+    res.send("Server error ❌");
   }
 });
 
+
 // 🚪 LOGOUT
 app.get("/logout", (req, res) => {
-  req.session.destroy(() => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log("LOGOUT ERROR:", err);
+    }
     res.redirect("/login");
   });
 });
+
+app.set("trust proxy", 1); // 👈 VERY IMPORTANT for Render
+
+app.use(session({
+  store: new PGStore({
+    pool: pool,
+    tableName: "session"
+  }),
+  secret: "secret-key",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: true,        // 🔥 required on Render
+    httpOnly: true,
+    sameSite: "none"     // 🔥 required
+  }
+}));
 
 app.post("/like/:id", isAuthenticated, async (req, res) => {
   const userId = req.session.userId;

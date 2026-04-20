@@ -11,14 +11,23 @@ const PORT = process.env.PORT || 5000;
 // 🔌 PostgreSQL setup
 const { Pool } = pkg;
 
-const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "stumptalk",
-  password: "athak123",
-  port: 5432,
-});
+const isProduction = process.env.DATABASE_URL;
 
+const pool = new Pool(
+  isProduction
+    ? {
+        connectionString: process.env.DATABASE_URL,
+        ssl: { rejectUnauthorized: false },
+      }
+    : {
+        user: "postgres",
+        host: "localhost",
+        database: "stumptalk",
+        password: "athak123",
+        port: 5432,
+      }
+);
+export default pool;
 
 // 🧠 Session store
 const PgSession = connectPgSimple(session);

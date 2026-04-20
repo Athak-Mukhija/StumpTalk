@@ -211,3 +211,92 @@ input, textarea, select {
 .post-card:hover {
   transform: translateY(-5px);
 }
+
+
+/* 🔥 REGISTER PAGE STYLING */
+
+.auth-hero {
+  text-align: center;
+  padding: 40px 20px;
+  color: white;
+}
+
+.auth-hero h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.auth-hero p {
+  max-width: 500px;
+  margin: auto;
+  color: #ccc;
+}
+
+/* wrapper center */
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* card */
+.auth-card-x9 {
+  background: #1e1e2f;
+  padding: 30px;
+  border-radius: 12px;
+  width: 320px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+/* title */
+.auth-title-x9 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* form */
+.auth-form-x9 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-form-x9 input {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+/* button */
+.auth-btn-x9 {
+  margin-top: 10px;
+  padding: 10px;
+  background: crimson;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-btn-x9:hover {
+  background: #ff2e2e;
+}
+
+/* bottom link */
+.auth-switch-x9 {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.auth-switch-x9 a {
+  color: crimson;
+  text-decoration: none;
+}
+
+.auth-switch-x9 a:hover {
+  text-decoration: underline;
+}
